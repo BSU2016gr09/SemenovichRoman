@@ -1,3 +1,4 @@
+//вывод элементов с нечетными и четными индексами
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>

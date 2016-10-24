@@ -1,3 +1,4 @@
+//проверка числа, создание массива из случайных чисел, подсчет количества четных чисел в массиве   
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>

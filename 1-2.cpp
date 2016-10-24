@@ -1,3 +1,4 @@
+//проверка на натуральность, на кол-во цифр и вывод максимального числа с такими же цифрами
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>

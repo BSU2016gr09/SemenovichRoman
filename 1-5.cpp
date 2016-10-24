@@ -1,3 +1,4 @@
+//разделение массива на два других
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>

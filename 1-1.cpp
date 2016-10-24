@@ -1,3 +1,4 @@
+//проверка числа на натуральность и вывод суммы цифр
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>
@@ -5,8 +6,8 @@
 
 using namespace std;
 
-void digitsSum(int N); //сумма цифр
-void checkNumber(int N);  //проверяет число ТОЛЬКО на натуральность
+void digitsSum(int N);
+void checkNumber(int N);
 
 
 
