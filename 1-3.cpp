@@ -1,12 +1,13 @@
-//проверка числа, создание массива из случайных чисел, подсчет количества четных чисел в массиве   
+//проверка числа, создание массива из случайных чисел, подсчет количества четных чисел в массиве
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>
+#include <math.h>
 
 using namespace std;
 
-void checkNumber(int N);
-void createArray(int array[], int N);
+void checkNumber(double N);
+void createArray(int array[], double N);
 void printArray(int array[]);
 void showPosEvNumbers(int array[]);
 
@@ -14,7 +15,7 @@ void showPosEvNumbers(int array[]);
 
 int main(){
     srand(time(NULL));
-    int N;
+    double N;
     cout<<"3) Пользователь вводит с клавиатуры натуральное число не большее 100, которое сохраняется в переменную n, проверить корректность ввода, создать массив из 10 случайных целых чисел из отрезка [-2n;n], вывести массив на экран в строку, подсчитать и и вывести на экран количество положительных чётных чисел в массиве.\n";
     cout<<"\nPlease enter a natural number (<=100): ";
     cin>>N;
@@ -25,16 +26,16 @@ int main(){
     showPosEvNumbers(array);
 }
 
-void checkNumber(int N){ //проверяет число на натуральность и количество цифр
+void checkNumber(double N){ //проверяет число на натуральность и количество цифр
 
-    if (N >= 100 || N <= 0){
+    if (N >= 100 || N <= 0 || floor(N) != N){
         cout<<"Wrong input!"<<"\n";
         abort();
 
         }
 }
 
-void createArray(int array[], int N){
+void createArray(int array[], double N){
     int min = -2*N, max = 3*N + 1;
     int i = 0;
     while (i < 10){

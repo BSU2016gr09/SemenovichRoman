@@ -24,7 +24,7 @@ int main(){
 void createArray(float array[]){
     int i = 0;
     while (i < N){
-        array[i] = (rand() % 1001 - 500) / 10.0;
+        array[i] = (rand() % 1010 - 500) / 10.0;
         i++;
     }
 }

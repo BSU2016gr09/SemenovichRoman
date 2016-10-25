@@ -6,15 +6,15 @@
 
 using namespace std;
 
-void checkNumber(int N);
-void getMaxNumber(int N);
+void checkNumber(double N);
+void getMaxNumber(double N);
 
 
 
 
 
 int main(){
-    int N;
+    double N;
     cout<<"2) Пользователь вводит с клавиатуры пятизначное натуральное число, которое сохраняется в переменную n, проверить корректность ввода, составить и вывести на экран число из цифр введённого числа n, так, чтобы выведенное число оказалось максимальным из возможных. Например, если пользователь ввёл число 22195, то программа должна вывести число 95221.\n";
     cout<<"\nPlease enter a natural five-digit number: ";
     cin>>N;
@@ -24,14 +24,14 @@ int main(){
 }
 
 
-void checkNumber(int N){ //проверяет число на натуральность и количество цифр
+void checkNumber(double N){ //проверяет число на натуральность и количество цифр
     int counter = 0, copy = N;
     while (copy  != 0){
          copy /=10;
          counter+=1;
         }
 
-    if (N < 1 || counter != 5){
+    if (N < 1 || counter != 5 || floor(N) != N){
         cout<<"\nWrong input!\n\n";
         abort();
 
@@ -40,12 +40,12 @@ void checkNumber(int N){ //проверяет число на натуральн
 
 
 
-void getMaxNumber(int N){
+void getMaxNumber(double N){
     int array[5];
     int i = 0;
 
     while (N  != 0){
-         array[i] = N % 10;
+         array[i] = int(N) % 10;
          N /=10;
          i++;
         }
