@@ -15,7 +15,7 @@ void showPosEvNumbers(int array[]);
 
 int main(){
     srand(time(NULL));
-    double N;
+    double N;//натуральное число сохраняется в переменную n,
     cout<<"3) Пользователь вводит с клавиатуры натуральное число не большее 100, которое сохраняется в переменную n, проверить корректность ввода, создать массив из 10 случайных целых чисел из отрезка [-2n;n], вывести массив на экран в строку, подсчитать и и вывести на экран количество положительных чётных чисел в массиве.\n";
     cout<<"\nPlease enter a natural number (<=100): ";
     cin>>N;
@@ -53,7 +53,7 @@ void printArray(int array[]){
 
 }
 
-void showPosEvNumbers(int array[]){
+void showPosEvNumbers(int array[]){//все таки не show, а count!!!
     int i = 0, count = 0;
     while (i < 10){
         if (array[i] > 0 && array[i] % 2 == 0){
