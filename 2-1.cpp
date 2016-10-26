@@ -13,9 +13,9 @@ void turnArray(int Arr[], int N);
 int main(){
     srand(time(NULL));
     int N;
-    cout<<"Enter the size of the array: ";
+    cout<<"Enter the size of the array: ";//договариваились, что комментраии или на русском цi на беларускай лацiнiце!!!
     cin>>N;
-    int Arr[N];
+    int Arr[N];// интересно, что у тебя за транслятор, который позволяет так выделять память НЕИЗВЕСТНОГО размера (N во время трансляции НЕИЗВЕСТНО!!!!!!!
     createArray(Arr, N);
     cout<<"The array: ";
     printArray(Arr, N);
