@@ -13,13 +13,15 @@ void turnArray(int Arr[], int N);
 int main(){
     srand(time(NULL));
     int N;
-    cout<<"Enter the size of the array: ";//договариваились, что комментраии или на русском цi на беларускай лацiнiце!!!
+    cout<<"Введите размер массива: ";//договариваились, что комментраии или на русском цi на беларускай лацiнiце!!!
     cin>>N;
-    int Arr[N];// интересно, что у тебя за транслятор, который позволяет так выделять память НЕИЗВЕСТНОГО размера (N во время трансляции НЕИЗВЕСТНО!!!!!!!
+    //int Arr[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-array-of-size-n
+    // g++ - default compiler of QtCreator
+    int *Arr = new int[N];
     createArray(Arr, N);
-    cout<<"The array: ";
+    cout<<"Массив: ";
     printArray(Arr, N);
-    cout<<"The inverse array: ";
+    cout<<"Перевернутый массив: ";
     turnArray(Arr, N);
     printArray(Arr, N);
 }
