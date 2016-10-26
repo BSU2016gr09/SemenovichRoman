@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int N = 10;
+const int N = 10;//Ой как плохо.... Глобальная переменная!!!!
 void createArray(float array[]);
 int indexB(float array[]);
 int indexC(float array[]);
@@ -21,7 +21,7 @@ int main(){
     float B[n1];
     int n2 = indexC(A);
     float C[n2];
-    fillArrays(A, B, C, N);
+    fillArrays(A, B, C, N);//Зачем передавать тогда N если она глобальная
     cout<<"Massive B: ";
     printArray(B, n1);
     cout<<"\nMassive C: ";
