@@ -30,9 +30,9 @@ void createArray(float array[]){
 }
 
 void printEvenIndex(float array[]){
-    int i = 0, j = 1;
+    int i = 0, j = 1;//зачем 2 индекса???? Столько не нужно
     cout<<"\nEven Index: ";
-    while (i < 5){
+    while (i < 5){//плохо!!!! непонятная константа!!! А если я изменю N=200?
         cout<<array[2*j - 1]<<' ';
         i++;
         j++;
@@ -40,9 +40,9 @@ void printEvenIndex(float array[]){
 }
 
 void printOddIndex(float array[]){
-    int i = 0, j = -2 ;
+    int i = 0, j = -2 ;;//зачем 2 индекса???? Столько не нужно
     cout<<"\nOdd Index: ";
-    while (i < 5){
+    while (i < 5){//плохо!!!! непонятная константа!!! А если я изменю N=200?
         cout<<array[j + 2]<<' ';
         i++;
         j++;
