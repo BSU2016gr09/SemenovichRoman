@@ -31,7 +31,7 @@ int main(){
 void createArray(int a[], int N){
     int i = 0;
     while (i < N){
-        a[i] = rand() % (N - 1) + 1 ;
+        a[i] = i + 1;
         i++;
     }
 }
