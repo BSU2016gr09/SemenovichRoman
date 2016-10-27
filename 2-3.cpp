@@ -6,65 +6,65 @@
 
 using namespace std;
 
-void createArray(int Arr[], int N);
-void printArray(int Arr[], int N);
-void shiftArray(int Arr[], int N, int k);
-void reverse(int Arr[], int N);
-void shiftArray1(int Arr[], int N, int k);
+void createArray(int a[], int N);
+void printArray(int a[], int N);
+void shiftArray(int a[], int N, int k);
+void reverse(int a[], int N);
+void shiftArray1(int a[], int N, int k);
 
 int main(){
     srand(time(NULL));
     const int N = 10;
-    int Arr[N], k;
-    createArray(Arr, N);
+    int a[N], k;
+    createArray(a, N);
     cout<<"Массив: ";
-    printArray(Arr, N);
+    printArray(a, N);
     cout<<"\nВведите сдвиг массива: ";
     cin>>k;
-    shiftArray(Arr, N, k);
+    shiftArray(a, N, k);
     cout<<"Сдвинутый вправо массив: ";
-    printArray(Arr, N);
+    printArray(a, N);
     cout<<"\nСдвинутый влево массив: ";
-    shiftArray1(Arr, N, k);
-    printArray(Arr, N);
+    shiftArray1(a, N, k);
+    printArray(a, N);
     }
 
-void createArray(int Arr[], int N){
+void createArray(int a[], int N){
     int i = 0;
     while (i < N){
-        Arr[i] = (rand() % (2*N + 1)) - N;
+        a[i] = (rand() % (2*N + 1)) - N;
         i++;
     }
 }
 
-void shiftArray(int Arr[], int N, int k){
-    reverse(Arr, N - k);
-    reverse(Arr + N - k, k);
-    reverse(Arr, N);
+void shiftArray(int a[], int N, int k){
+    reverse(a, N - k);
+    reverse(a + N - k, k);
+    reverse(a, N);
 }
 
-void reverse(int Arr[], int N){
+void reverse(int a[], int N){
     if (N < 1) {
         return;
     }
     int i = 0, j = N - 1;
     while (i < j){
-        swap(Arr[i], Arr[j]);
+        swap(a[i], a[j]);
         i++;
         j--;
     }
 }
 
-void printArray(int Arr[], int N){
+void printArray(int a[], int N){
     int i = 0;
     while (i < N){
-        cout<<Arr[i]<<" ";
+        cout<<a[i]<<" ";
         i++;
     }
 }
 
-void shiftArray1(int Arr[], int N, int k){
-    reverse(Arr, k );
-    reverse(Arr, N);
-    reverse(Arr, N - k);
+void shiftArray1(int a[], int N, int k){
+    reverse(a, k );
+    reverse(a, N);
+    reverse(a, N - k);
 }
