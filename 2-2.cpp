@@ -13,12 +13,11 @@ void changeArray2(int Arr[], int N);
 
 int main(){
     srand(time(NULL));
-    int N;
-    cout<<"Введите размер массива: ";
-    cin>>N;
+    const int N = 10;
+
     //int Arr[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-array-of-size-n
     // g++ - default compiler of QtCreator
-    int *Arr = new int[N];
+    int Arr[N];
     createArray(Arr, N);
     cout<<"Массив: ";
     printArray(Arr, N);
