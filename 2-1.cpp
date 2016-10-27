@@ -27,7 +27,7 @@ int main(){
 void createArray(int Arr[], int N){
     int i = 0;
     while (i < N){
-        Arr[i] = (rand() % (2*N + 1)) - N;
+        Arr[i] = rand() % (N - 1) + 1 ;
         i++;
     }
 }
