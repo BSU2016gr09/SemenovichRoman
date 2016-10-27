@@ -14,11 +14,9 @@ void mixArray2(int a[], int N);
 int main(){
     srand(time(NULL));
     const int N = 10;
-    //int a[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-aay-of-size-n
-    // g++ - default compiler of QtCreator
     int a[N];
     createArray(a, N);
-    cout<<"Массив: "; 
+    cout<<"Массив: ";
     printArray(a, N);
     cout<<"Перемешанный первым способом массив: ";
     mixArray1(a, N);
@@ -31,7 +29,7 @@ int main(){
 void createArray(int a[], int N){
     int i = 0;
     while (i < N){
-        a[i] = rand() % (N - 1) + 1 ;
+        a[i] = i + 1;
         i++;
     }
 }
