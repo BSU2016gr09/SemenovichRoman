@@ -6,45 +6,45 @@
 
 using namespace std;
 
-void createArray(int Arr[], int N);
-void printArray(int Arr[], int N);
-void turnArray(int Arr[], int N);
+void createArray(int a[], int N);
+void printArray(int a[], int N);
+void turnArray(int a[], int N);
 
 int main(){
     srand(time(NULL));
     const int N = 10;
     //int Arr[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-array-of-size-n
     // g++ - default compiler of QtCreator
-    int Arr[N];
-    createArray(Arr, N);
+    int a[N];
+    createArray(a, N);
     cout<<"Массив: ";
-    printArray(Arr, N);
+    printArray(a, N);
     cout<<"Перевернутый массив: ";
-    turnArray(Arr, N);
-    printArray(Arr, N);
+    turnArray(a, N);
+    printArray(a, N);
 }
 
-void createArray(int Arr[], int N){
+void createArray(int a[], int N){
     int i = 0;
     while (i < N){
-        Arr[i] = rand() % (N - 1) + 1 ;
+        a[i] = rand() % (N - 1) + 1 ;
         i++;
     }
 }
 
-void printArray(int Arr[], int N){
+void printArray(int a[], int N){
     int i = 0;
     while (i < N){
-        cout<<Arr[i]<<" ";
+        cout<<a[i]<<" ";
         i++;
     }
     cout<<"\n";
 }
 
-void turnArray(int Arr[], int N){
+void turnArray(int a[], int N){
     int i = 0, j = N - 1;
     while (i < N/2){
-        swap(Arr[i], Arr[j]);
+        swap(a[i], a[j]);
         i++;
         j--;
     }
