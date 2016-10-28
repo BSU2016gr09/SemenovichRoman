@@ -17,7 +17,7 @@ int main(){
 
     //int Arr[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-array-of-size-n
     // g++ - default compiler of QtCreator
-    int Arr[N];
+    int a[N];
     createArray(a, N);
     cout<<"Массив: ";
     printArray(a, N);
