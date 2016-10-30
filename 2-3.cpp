@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 //сдвигает массив сначала вправо, затем -- влево на k-элементов
 #include <QCoreApplication>
 #include <iostream>
@@ -70,4 +68,3 @@ void shiftArray1(int a[], int N, int k){
     reverse(a, N);
     reverse(a, N - k);
 }
->>>>>>> 92369468ac2b44acec5bc1e73c0adef825b7960d
