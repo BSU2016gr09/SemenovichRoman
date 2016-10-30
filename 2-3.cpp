@@ -37,7 +37,7 @@ void createArray(int a[], int N){
     }
 }
 
-void shiftArray(int a[], int N, int k){
+void shiftArray(int a[], int N, int k){//красиво и оригинально, но все равно выполняет лишние действия по сравнению с рассказанным на занятии методом. 
     reverse(a, N - k);
     reverse(a + N - k, k);
     reverse(a, N);
