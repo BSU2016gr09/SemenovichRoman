@@ -12,7 +12,7 @@ void turnArray(int a[], int N);
 
 int main(){
     srand(time(NULL));
-    const int N = 10;
+    const int N = 6;
     int a[N];
     createArray(a, N);
     cout<<"Массив: ";
@@ -40,15 +40,9 @@ void printArray(int a[], int N){
 }
 
 void turnArray(int a[], int N){
-<<<<<<< HEAD
     int i = 0;
-    while (i <= N){
+    while (i < N){
         swap(a[i], a[N - 1]);
-=======
-    int i = 0, j = N - 1; 
-    while (i < N/2){
-        swap(a[i], a[j]);// желаю увидеть код с одной переменной i. j здесь абсолютно не нужно!!!
->>>>>>> 92369468ac2b44acec5bc1e73c0adef825b7960d
         i++;
         N--;
     }
