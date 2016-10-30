@@ -3,7 +3,7 @@
 #include <iostream>
 #include <math.h>
 #include <ctime>
-
+ 
 using namespace std;
 
 void createArray(int a[], int N);

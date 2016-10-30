@@ -8,8 +8,8 @@ using namespace std;
 
 void createArray(int a[], int N);
 void printArray(int a[], int N);
-void changeArray1(int a[], int N);
-void changeArray2(int a[], int N);
+void changeArray1(int a[], int N);//плохие названия
+void changeArray2(int a[], int N);//плохие названия
 
 int main(){
     srand(time(NULL));
@@ -47,7 +47,7 @@ void printArray(int a[], int N){
 }
 
 void changeArray2(int a[], int N){
-    int i = 0, tmp = a[0];
+    int i = 0, tmp = a[0]; //я на занятии рассказал, что так не пойдёт... Никакого tmp
     while (i < N - 1){
         a[i] = a[i + 1];
         i++;
@@ -58,7 +58,7 @@ void changeArray2(int a[], int N){
 
 
 void changeArray1(int a[], int N){
-    int i = N, tmp = a[N - 1];
+    int i = N, tmp = a[N - 1];//я на занятии рассказал, что так не пойдёт... Никакого tmp
     while (i > 0){
         a[i] = a[i - 1];
         i--;
