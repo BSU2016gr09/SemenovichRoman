@@ -42,9 +42,9 @@ void printArray(int a[], int N){
 }
 
 void turnArray(int a[], int N){
-    int i = 0, j = N - 1;
+    int i = 0, j = N - 1; 
     while (i < N/2){
-        swap(a[i], a[j]);
+        swap(a[i], a[j]);// желаю увидеть код с одной переменной i. j здесь абсолютно не нужно!!!
         i++;
         j--;
     }
