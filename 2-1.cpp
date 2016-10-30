@@ -13,8 +13,6 @@ void turnArray(int a[], int N);
 int main(){
     srand(time(NULL));
     const int N = 10;
-    //int Arr[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-array-of-size-n
-    // g++ - default compiler of QtCreator
     int a[N];
     createArray(a, N);
     cout<<"Массив: ";
@@ -42,10 +40,10 @@ void printArray(int a[], int N){
 }
 
 void turnArray(int a[], int N){
-    int i = 0, j = N - 1;
-    while (i < N/2){
-        swap(a[i], a[j]);
+    int i = 0;
+    while (i <= N){
+        swap(a[i], a[N - 1]);
         i++;
-        j--;
+        N--;
     }
 }
