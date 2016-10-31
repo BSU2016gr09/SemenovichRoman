@@ -1,4 +1,4 @@
-//сдвигает массив сначала вправо, затем -- влево
+//сдвигает массив сначала вправо, затем -- влево на 1 элемент
 #include <QCoreApplication>
 #include <iostream>
 #include <math.h>
@@ -8,26 +8,23 @@ using namespace std;
 
 void createArray(int a[], int N);
 void printArray(int a[], int N);
-void changeArray1(int a[], int N);//плохие названия
-void changeArray2(int a[], int N);//плохие названия
+void shiftArrayToTheLeft(int a[], int N);
+void shiftArrayToTheRight(int a[], int N);
 
 int main(){
     srand(time(NULL));
     const int N = 10;
-
-    //int Arr[N]; - http://stackoverflow.com/questions/5368531/why-cant-i-create-an-array-of-size-n
-    // g++ - default compiler of QtCreator
     int a[N];
     createArray(a, N);
     cout<<"Массив: ";
     printArray(a, N);
-    changeArray1(a, N);
-    cout<<"Сдвинутый вправо массив: ";
+    shiftArrayToTheRight(a, N);
+    cout<<"\nСдвинутый вправо массив: ";
     printArray(a, N);
-    changeArray2(a, N);
-    cout<<"Сдвинутый влево массив: ";
+    shiftArrayToTheLeft(a, N);
+    cout<<"\nСдвинутый влево массив: ";
     printArray(a, N);
-        }
+}
 
 void createArray(int a[], int N){
     int i = 0;
@@ -43,26 +40,22 @@ void printArray(int a[], int N){
         cout<<a[i]<<" ";
         i++;
     }
-    cout<<"\n";
 }
 
-void changeArray2(int a[], int N){
-    int i = 0, tmp = a[0]; //я на занятии рассказал, что так не пойдёт... Никакого tmp
+void shiftArrayToTheLeft(int a[], int N){
+    int i = 0, first = a[0];
     while (i < N - 1){
         a[i] = a[i + 1];
         i++;
     }
-    a[N-1] = tmp;
-    i++;
-    }
+    a[N - 1] = first;
+}
 
-
-void changeArray1(int a[], int N){
-    int i = N, tmp = a[N - 1];//я на занятии рассказал, что так не пойдёт... Никакого tmp
+void shiftArrayToTheRight(int a[], int N){
+    int i = N - 1, last = a[i];
     while (i > 0){
         a[i] = a[i - 1];
         i--;
     }
-    a[0] = tmp;
+    a[0] = last;
 }
-
