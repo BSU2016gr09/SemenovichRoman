@@ -59,7 +59,7 @@ void shiftArrayToTheRight(int a[], int N, int k){
     int i = 0;
     int b[N];
     while (i < N){
-        b[abs((i + k) % N)] = a[i];
+        b[(i + k) % N] = a[i];
         i++;
     }
     swapArrays(a, b, N);
