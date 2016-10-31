@@ -1,3 +1,4 @@
+
 //сдвигает массив сначала вправо, затем -- влево на 1 элемент
 #include <QCoreApplication>
 #include <iostream>
@@ -48,7 +49,7 @@ void shiftArrayToTheLeft(int a[], int N){
         a[i] = a[i + 1];
         i++;
     }
-    a[N - 1] = first;
+    a[i] = first;
 }
 
 void shiftArrayToTheRight(int a[], int N){
@@ -57,5 +58,5 @@ void shiftArrayToTheRight(int a[], int N){
         a[i] = a[i - 1];
         i--;
     }
-    a[0] = last;
+    a[i] = last;
 }
