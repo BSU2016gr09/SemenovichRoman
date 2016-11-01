@@ -41,9 +41,8 @@ void printArray(int a[], int N){
 
 void turnArray(int a[], int N){
     int i = 0;
-    while (i < N){
-        swap(a[i], a[N - 1]);// ты прикалываешься??? Если вместо буквы j использовать букву N, то это исправление???? ))))))
+    while (i < N / 2){
+        swap(a[i], a[N - 1 - i]);
         i++;
-        N--;
     }
 }
