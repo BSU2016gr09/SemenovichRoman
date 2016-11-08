@@ -1,3 +1,4 @@
+//график функции sin(2x)/x
 #include <iostream>
 #include <iomanip>
 #include <math.h>
