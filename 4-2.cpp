@@ -12,7 +12,7 @@ void fillQueue(int queue[], int N);
 void fillPack(int queue[], int N);
 void dealCards(int first[], int second[], int pack[], int N, int &top1, int &top2);
 void game1(int first [], int second[], int N, int &top1, int &top2, int pack[]);
-void game2(int first [], int second[], int N, int &top1, int &top2, int pack[]);
+void game2(int first [], int second[], int N, int &top1, int &top2, int pack[]);//не работает при кол-ве игр<>1 Я проверял!!! Ошибка, скорее вего, в НЕобнулении стека/очереди
 void showCards(int card);
 
 int main(){
