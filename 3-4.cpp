@@ -4,14 +4,14 @@
 
 using namespace std;
 
-void pushNum(double numbers, double stack[], int &top);
-void popNum(int &top, int stackSize);
+void pushNum(double numbers, double stack[], int &top);// а зачем другое имя, чем push?
+void popNum(int &top, int stackSize);// а зачем другое имя, чем pop? И очень неудачная реализация!!! Не ясно с каким именно стеком работаем? А если стеков несколько?????
 void fillStackOfNumbers(double stack[], double numbers[], int N, int &top);
-void showStacksOfNumbersElements(double stack[], int &top, int stackSize);
-void showStacksOfSymbolsElements(char stack[], int &top, int stackSize);
+void showStacksOfNumbersElements(double stack[], int &top, int stackSize);//не понял зачем  int &top  ты ведь не меняешь там top
+void showStacksOfSymbolsElements(char stack[], int &top, int stackSize);//не понял зачем  int &top  ты ведь не меняешь там top
 void fillStackOfSymbols(char stack[], char symbols[], int N, int &top);
-void popSym(int &top, int stackSize);
-void pushSym(char symbol, char stack[], int &top);
+void popSym(int &top, int stackSize);// а зачем другое имя, чем pop?
+void pushSym(char symbol, char stack[], int &top);// а зачем другое имя, чем push?
 
 
 int main(){
