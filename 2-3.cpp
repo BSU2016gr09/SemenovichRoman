@@ -47,7 +47,7 @@ void printArray(int a[], int N){
 }
 
 void shiftArrayToTheLeft(int a[], int N, int k){
-    int i = 0; int b[N];
+    int i = 0; int b[N];//плохая идея использовать доп. массив. Совсем плохая! Достаточно как в 2-2 запомнить всего ОДИН элемент
     while (i < N){
         b[i] = a[(i + k) % N];
         i++;
