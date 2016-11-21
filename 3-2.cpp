@@ -44,7 +44,7 @@ void sortArray(int array[], int N){
 
     for(int i = 0; i < N - 1; ++i)
         {
-            for(int j = 0; j < N - 1; ++j)
+            for(int j = 0; j < N - 1; ++j)// что за ужасный алгоритм сортировки???? Мы его 2 раза улучшали!!!!!!
             {
                 if (array[j + 1] < array[j])
                 {
