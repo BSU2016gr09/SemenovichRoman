@@ -24,18 +24,12 @@ int main(){
 
 void createArray(int a[], int N){
     int i = 0;
-    while (i < N){
-        a[i] = rand() % (N - 1) + 1 ;
-        i++;
-    }
+    while (i < N) a[i++] = rand() % (N - 1) + 1 ;
 }
 
 void printArray(int a[], int N){
     int i = 0;
-    while (i < N){
-        cout<<a[i]<<" ";
-        i++;
-    }
+    while (i < N) cout << a[i++] <<"  ";
     cout<<"\n";
 }
 

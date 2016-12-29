@@ -1,9 +1,7 @@
-
 //сдвигает массив сначала вправо, затем -- влево на 1 элемент
 #include <QCoreApplication>
 #include <iostream>
-#include <math.h>
-#include <ctime>
+#include <time.h>
 
 using namespace std;
 
@@ -25,26 +23,23 @@ int main(){
     shiftArrayToTheLeft(a, N);
     cout<<"\nСдвинутый влево массив: ";
     printArray(a, N);
+    cout << "\n";
 }
 
 void createArray(int a[], int N){
     int i = 0;
-    while (i < N){
-        a[i] = (rand() % (2*N + 1)) - N;
-        i++;
-    }
+    while (i < N) a[i++] = (rand() % (2*N + 1)) - N;
 }
 
 void printArray(int a[], int N){
     int i = 0;
-    while (i < N){
-        cout<<a[i]<<" ";
-        i++;
-    }
+    while (i < N) cout << a[i++] << "  ";
+
 }
 
 void shiftArrayToTheLeft(int a[], int N){
-    int i = 0, first = a[0];
+    int i = 0;
+    int first = a[i];
     while (i < N - 1){
         a[i] = a[i + 1];
         i++;
@@ -53,10 +48,12 @@ void shiftArrayToTheLeft(int a[], int N){
 }
 
 void shiftArrayToTheRight(int a[], int N){
-    int i = N - 1, last = a[i];
+    int i = N - 1;
+    int last = a[N - 1];
     while (i > 0){
         a[i] = a[i - 1];
         i--;
     }
     a[i] = last;
 }
+

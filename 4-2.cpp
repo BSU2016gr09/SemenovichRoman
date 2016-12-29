@@ -19,8 +19,8 @@ int main(){
     srand(time(NULL));
     int N = 36, top1 = N, top2 = N;
     int pack[N], first[N], second[N];
-    game1(first, second, N, top1, top2, pack); //игра до одной победы
-    //game2(first, second, N, top1, top2, pack); //игра на 5000 партий
+    //game1(first, second, N, top1, top2, pack); //игра до одной победы
+    game2(first, second, N, top1, top2, pack); //игра на 5000 партий
     cout<<"\n";
 }
 
@@ -142,7 +142,7 @@ void game1(int first [], int second[], int N, int &top1, int &top2, int pack[]){
 
 void game2(int first [], int second[], int N, int &top1, int &top2, int pack[]){
     int game = 0, count, MinNumber = 10000, MaxNumber = 0;
-    while (game < 5000) {
+    while (game < 10) {
         ++game;
         top1 = N; top2 = N;
         fillPack(pack, N);
@@ -150,63 +150,75 @@ void game2(int first [], int second[], int N, int &top1, int &top2, int pack[]){
         fillQueue(second, N);
         dealCards(first, second, pack, N, top1, top2);
         count = 0;
-        while (top1 != 0 && top2 != 0){
+        while (top1 > 0 && top2 > 0){
             ++count;
-            cout<<"\n____________________________________"<< "\n\n\nКруг #"<<count<< "\n";
+            cout<<"\n____________________________________"<< "\n\n\nКруг #"<<count<< "\nПервый (" << N - top1 << "): ";
+            for (int i = top1; i < N; i++) cout << " " << first[i]; cout<<"\nВторой (" << N - top2<< "): ";
+            for (int i = top2; i < N; i++) cout << " " << second[i]; cout<<"\n";
             cout<<"\nКарта первого игрока:"; showCards(first[top1]);
             cout<<"\nКарта второго игрока:"; showCards(second[top2]);
             if (first[top1] > second[top2]){
                 if ((second[top2] == 6 && first[top1] == 14) || (second[top2] == 7 && first[top1] == 13)){
                     cout<<"\n\nВторой забирает карту";
-                    push(second, N, top2, first[top1]);
-                    pop(top1, first);
+
                     push(second, N, top2, second[top2]);
                     pop(top2, second);
+                    push(second, N, top2, first[top1]);
+                    pop(top1, first);
                 }
                 else {
                       cout<<"\n\nПервый забирает карту";
-                      push(first, N, top1, second[top2]);
-                      pop(top2, second);
+
                       push(first, N, top1, first[top1]);
                       pop(top1, first);
+                      push(first, N, top1, second[top2]);
+                      pop(top2, second);
                 }
             }
             else{
                 if (first[top1] < second[top2]){
                         if ((first[top1] == 6 && second[top2] == 14) || (first[top1] == 7 && second[top2] == 13)){
                             cout<<"\n\nПервый забирает карту";
-                            push(first, N, top1, second[top2]);
-                            pop(top2, second);
+
                             push(first, N, top1, first[top1]);
                             pop(top1, first);
+                            push(first, N, top1, second[top2]);
+                            pop(top2, second);
                         }
                         else {
                             cout<<"\n\nВторой забирает карту";
-                            push(second, N, top2, first[top1]);
-                            pop(top1, first);
+
                             push(second, N, top2, second[top2]);
                             pop(top2, second);
+                            push(second, N, top2, first[top1]);
+                            pop(top1, first);
                         }
                    }
                 else{
                                 cout<<"\n\nКарты равны";
-                                push(first, N, top1, first[top1]);
-                                pop(top1, first);
+
                                 push(second, N, top2, second[top2]);
                                 pop(top2, second);
+                                push(first, N, top1, first[top1]);
+                                pop(top1, first);
             }
             }
-}
+            if (count > 10000) {
+                cout << "\nНичья!";
+                break;
+            }
+
+    }
         if (MinNumber > count) MinNumber = count;
         if (MaxNumber < count) MaxNumber = count;
 
+        if (top1 < top2) cout<<"\nПобедил первый игрок!";
+        else{ if(top2 < top1 ) cout<<"\nПобедил второй игрок!";
+              else cout<<"\nНичья!";
 
+             }
     }
 
-   if (top1 < top2) cout<<"\nПобедил первый игрок!";
-   else{ if(top2 < top1 ) cout<<"\nПобедил второй игрок!";
-         else cout<<"\nНичья!";
-        }
    cout<< "\nСыграно "<< game<< " партий";
    cout<< "\nМинимальное количество ходов: "<<MinNumber<<"\nМаксимальное: "<<MaxNumber<< "\nСреднее: " << (MinNumber+MaxNumber)/2;
 

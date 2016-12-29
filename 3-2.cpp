@@ -12,7 +12,7 @@ void sortArray(int array[], int N);
 
 int main(){
     srand(time(NULL));
-    const int N = 5;
+    const int N = 7;
     int a[N];
     createArray(a, N);
     cout<<"Массив: ";
@@ -44,13 +44,7 @@ void sortArray(int array[], int N){
 
     for(int i = 0; i < N - 1; ++i)
         {
-            for(int j = 0; j < N - 1; ++j)// что за ужасный алгоритм сортировки???? Мы его 2 раза улучшали!!!!!!
-            {
-                if (array[j + 1] < array[j])
-                {
-                    swap(array[j],array[j+1]);
-                }
-            }
+            for(int j = 0; j < N - 1; ++j) if (array[j + 1] < array[j]) swap(array[j], array[j+1]);
         }
 }
 

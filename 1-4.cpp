@@ -1,50 +1,57 @@
 //вывод элементов с нечетными и четными индексами
+
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>
 
 using namespace std;
 
-void createArray(float array[]);
-void printEvenIndex(float array[]);
-void printOddIndex(float array[]);
+void printArray (float a[]);
+void createArray(float a[]);
+void printEvenIndex(float a[]);
+void printOddIndex(float a[]);
 const int N = 10;
 
 
 int main(){
-    cout<<"4) Объявить массив вещественных чисел размера N (число N объявить как константу). Проинициализировать значения элементов массива случайными числами из промежутка от -50 до 50. Вывести значения сначала элементов с нечетными коэффициентами (1-й, 3-й, 5-й,...) а затем - с четными\n";
     srand(time(NULL));;
-    float array[N];
-    createArray(array);
-    printOddIndex(array);
-    printEvenIndex(array);
+    float a[N];
+    createArray(a);
+    printArray(a);
+    printOddIndex(a);
+    printEvenIndex(a);
+    cout << "\n";
 
 }
 
-void createArray(float array[]){
+void printArray (float a[]){
+    int i = 0;
+    while (i < N) cout << a[i++] << "  ";
+    cout << '\n';
+}
+
+void createArray(float a[]){
     int i = 0;
     while (i < N){
-        array[i] = (rand() % 1010 - 500) / 10.0;
+        a[i] = (rand() % 1010 - 500) / 10.0;
         i++;
     }
 }
 
-void printEvenIndex(float array[]){
-    int i = 0, j = 1;//зачем 2 индекса???? Столько не нужно
-    cout<<"\nEven Index: ";
-    while (i < 5){//плохо!!!! непонятная константа!!! А если я изменю N=200?
-        cout<<array[2*j - 1]<<' ';
-        i++;
-        j++;
+void printEvenIndex(float a[]){
+    int i = 0;
+    cout << "\nНечетные индексы: ";
+    while (i < N){
+        cout << a[i] << ' ';
+        i += 2;
     }
 }
 
-void printOddIndex(float array[]){
-    int i = 0, j = -2 ;;//зачем 2 индекса???? Столько не нужно
-    cout<<"\nOdd Index: ";
-    while (i < 5){//плохо!!!! непонятная константа!!! А если я изменю N=200?
-        cout<<array[j + 2]<<' ';
-        i++;
-        j++;
+void printOddIndex(float a[]){
+    int i = 1;
+    cout << "\nЧетные индексы: ";
+    while (i < N){
+        cout << a[i]<<' ';
+        i += 2;
     }
 }

@@ -10,7 +10,6 @@ void createArray(int a[], int N);
 void printArray(int a[], int N);
 void shiftArrayToTheLeft(int a[], int N, int k);
 void shiftArrayToTheRight(int a[], int N, int k);
-void swapArrays(int a[], int b[], int N);
 
 int main(){
     srand(time(NULL));
@@ -47,28 +46,26 @@ void printArray(int a[], int N){
 }
 
 void shiftArrayToTheLeft(int a[], int N, int k){
-    int i = 0; int b[N];//плохая идея использовать доп. массив. Совсем плохая! Достаточно как в 2-2 запомнить всего ОДИН элемент
+    if (k > N) k = k - N;
+    int i = k, tmp;
     while (i < N){
-        b[i] = a[(i + k) % N];
+        tmp = a[(i + k) % N];
+        a[(i + k) % N] = a[i];
+        a[i] = tmp;
         i++;
     }
-    swapArrays(a, b, N);
 }
 
 void shiftArrayToTheRight(int a[], int N, int k){
-    int i = 0;
-    int b[N];
-    while (i < N){
-        b[(i + k) % N] = a[i];
-        i++;
+    if (k > N) k = k - N;
+    int i = N - 1, tmp;
+    while (i > k - 1){
+        tmp = a[(i + k) % N];
+        a[(i + k) % N] = a[i];
+        a[i] = tmp;
+        i--;
     }
-    swapArrays(a, b, N);
 }
 
-void swapArrays(int a[], int b[], int N){
-    int i = 0;
-    while (i < N){
-        a[i] = b[i];
-        i++;
-    }
-}
+
+

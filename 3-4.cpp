@@ -4,15 +4,14 @@
 
 using namespace std;
 
-void pushNum(double numbers, double stack[], int &top);// а зачем другое имя, чем push?
-void popNum(int &top, int stackSize);// а зачем другое имя, чем pop? И очень неудачная реализация!!! Не ясно с каким именно стеком работаем? А если стеков несколько?????
+void push(double numbers, double stack[], int &top);
+void pop(int &top, int stackSize, double stack[]);//И очень неудачная реализация!!! Не ясно с каким именно стеком работаем? А если стеков несколько?????
 void fillStackOfNumbers(double stack[], double numbers[], int N, int &top);
 void showStacksOfNumbersElements(double stack[], int &top, int stackSize);//не понял зачем  int &top  ты ведь не меняешь там top
 void showStacksOfSymbolsElements(char stack[], int &top, int stackSize);//не понял зачем  int &top  ты ведь не меняешь там top
 void fillStackOfSymbols(char stack[], char symbols[], int N, int &top);
-void popSym(int &top, int stackSize);// а зачем другое имя, чем pop?
-void pushSym(char symbol, char stack[], int &top);// а зачем другое имя, чем push?
-
+void pop(int &top, int stackSize, char stack);
+void push(char symbol, char stack[], int &top);
 
 int main(){
     int N = 6, stackSize = 5, top = stackSize;
@@ -25,10 +24,11 @@ int main(){
     fillStackOfSymbols(stackOfSymbols, symbols, N, top);
     cout << "Стек символов:\n";
     showStacksOfSymbolsElements(stackOfSymbols, top, stackSize);
+    cout << "\n";
 }
 
 
-void pushNum(double numbers, double stack[], int &top){
+void push(double numbers, double stack[], int &top){
     top--;
     if (top == -1){
         cout << "Нет места. Стек заполнен\n";
@@ -38,7 +38,8 @@ void pushNum(double numbers, double stack[], int &top){
     stack[top] = numbers;
 }
 
-void popNum(int &top, int stackSize){
+void pop(int &top, int stackSize, double stack[]){
+    stack[top] = 0;
     top++;
     if (top == stackSize){
         cout << "Стек пуст\n";
@@ -49,7 +50,7 @@ void popNum(int &top, int stackSize){
 void fillStackOfNumbers(double stack[], double numbers[], int N, int &top){
     int i = 0;
     while (i < N){
-        pushNum(numbers[i], stack, top);
+        push(numbers[i], stack, top);
         i++;
     }
 }
@@ -60,13 +61,13 @@ void showStacksOfNumbersElements(double stack[], int &top, int stackSize){
     cout << "Стек:\n";
     while (i < stackSize){
         cout << stack[top] << "\n";
-        popNum(top, stackSize);
+        pop(top, stackSize, stack);
         i++;
     }
 }
 
 
-void pushSym(char symbol, char stack[], int &top){
+void push(char symbol, char stack[], int &top){
     top--;
     if (top == -1){
         cout << "\nНет места. Стек заполнен\n";
@@ -76,7 +77,8 @@ void pushSym(char symbol, char stack[], int &top){
     stack[top] = symbol;
 }
 
-void popSym(int &top, int stackSize){
+void pop(int &top, int stackSize, char stack[]){
+    stack[top] = '\0';
     top++;
     if (top == stackSize){
         cout << "Стек пуст\n";
@@ -87,7 +89,7 @@ void popSym(int &top, int stackSize){
 void fillStackOfSymbols(char stack[], char symbols[], int N, int &top){
     int i = 0;
     while (i < N){
-        pushSym(symbols[i], stack, top);
+        push(symbols[i], stack, top);
         i++;
     }
 }
@@ -98,7 +100,7 @@ void showStacksOfSymbolsElements(char stack[], int &top, int stackSize){
     cout << "Стек:\n";
     while (i < stackSize){
         cout << stack[top] << "\n";
-        popSym(top, stackSize);
+        pop(top, stackSize, stack);
         i++;
     }
 }
