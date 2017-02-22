@@ -23,9 +23,9 @@ int main()
     cout << "\n" << a << "x + " << b << "y + " << c << " = 0";
     cout << "\nВведите количество точек на плоскости: ";
     cin >> N;
-    char * Points = new char [N];
-    int * X = new int[N];
-    int * Y = new int[N];
+    char * Points = new char [N]; //Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
+    int * X = new int[N]; //Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
+    int * Y = new int[N];//Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
     inputPoints(Points, X, Y, N);
     sortPoints(Points, a, b, c, X, Y, N);
     printPoints(Points, X, Y, N);
