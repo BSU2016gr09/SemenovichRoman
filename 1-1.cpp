@@ -1,16 +1,12 @@
-//Расположить в порядке возрастания элементы массива А(N), начиная с k-го элемента
-
 #include <QCoreApplication>
 #include <iostream>
 #include <time.h>
 
 using namespace std;
 
-void inputArray(int * Array, int size);
-void printArray(int * Array, int size);
-void sortArray(int * Array, int size);
-void giveMemory(int * &Array, int size);
-void deleteMemory (int * &Array);
+void inputArray(int * A, int N);
+void printArray(int * A, int N);
+void sortArray(int * A, int N);
 
 int main()
 {
@@ -18,54 +14,38 @@ int main()
     int N;
     cout << "Введите размер массива: ";
     cin >> N;
-    int * A;
-    giveMemory(A, N);
+    int * A = new int[N]; //Где выделение и контроль динамической памяти??? Почему выделение не в отдельной функции???
     inputArray(A, N);
     cout << "\nВаш массив: ";
     printArray(A, N);
     sortArray(A, N);
     cout << "\nВаш массив после сортировки: ";
     printArray(A, N);
-    deleteMemory(A);
+    delete [] A;
     A = nullptr;
     cout << "\n";
     return 0;
 }
 
-void giveMemory(int * &Array, int size){
-    try{
-        Array = new int [size];
-    }
-    catch(...){
-        cout << "Память не выделилась :(";
-        exit(0);
+void inputArray(int * A, int N){
+    for(int i = 0; i < N; i++){
+        A[i] = rand() % N + 1;
     }
 }
 
-void deleteMemory (int * &Array){
-    delete [] Array;
-}
-
-void inputArray(int * Array, int size){
-    for(int i = 0; i < size; i++){
-        *(Array + i) = rand() % size + 1;
+void printArray(int * A, int N){
+    for (int i = 0; i < N; i++){
+        cout << *(A + i) << " ";
     }
 }
 
-void printArray(int * Array, int size){
-    for (int i = 0; i < size; i++){
-        cout << *(Array + i) << " ";
-    }
-}
-
-void sortArray(int * Array, int size){
+void sortArray(int * A, int N){
     int k;
     cout << "\nВведите индекс элемента, с которого начнется сортировка: ";
     cin >> k;
-    for (int i = k; i < size - 1; i++){
-        for (int j = k; j < size - 1; j++){
-            if (*(Array + j) > *(Array + j + 1)) swap(*(Array + j), *(Array + j + 1));
+    for (int i = k; i < N - 1; i++){
+        for (int j = k; j < N - 1; j++){
+            if (A[j] > A[j + 1]) swap(A[j],A[j + 1]);
         }
     }
 }
-
