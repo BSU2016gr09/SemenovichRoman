@@ -7,9 +7,14 @@
 using namespace std;
 
 int rand0m();
+void getNumbers();
 
 int main()
 {
+    getNumbers();
+}
+
+void getNumbers(){
     int N;
     cout << "Введите количество случайных чисел: ";
     cin >> N;
