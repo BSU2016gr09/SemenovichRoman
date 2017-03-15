@@ -6,6 +6,7 @@
 using namespace std;
 
 void give_memory(int**&, int, int);
+void give_memory(int *&, int);
 void printArray(int **, int, int);
 void initArray(int **, int, int);
 void delete_memory(int**, int);
@@ -25,6 +26,7 @@ int main(){
     int** arr;
     int * minArr;
     give_memory(arr, N, M);
+    give_memory(minArr, M);
     initArray(arr, N, M);
     printArray(arr, N, M);
     sortArray(arr, minArr, N, M);
@@ -77,6 +79,10 @@ void saveMin(int ** arr, int * minArr, int N, int M){
     }
 }
 
+void give_memory(int *&minArr, int M){
+    minArr = new int[M];
+}
+
 void give_memory(int ** &arr, int N, int M){
     try {
         arr = new int *[M];
@@ -119,3 +125,4 @@ void delete_memory(int** arr, int M) {
 void delete_memory(int * arr){
     delete [] arr;
 }
+
