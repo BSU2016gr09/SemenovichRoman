@@ -11,7 +11,7 @@ double x2(double);
 double reverseX(double);
 double reverse1PlusX2(double);
 double reverseSin2(double);
-double calcIntegral(int, int, double (*pf)(double), double);
+double calcIntegral(int, int, double (*pf)(double), double);//Масло маслянное. Ты же уже сделал typedef
 
 int main()
 {
@@ -51,7 +51,7 @@ double reverseX(double x){
     return 1/x;
 }
 
-double calcIntegral(int a, int b, double (*pf)(double), double epsilon){
+double calcIntegral(int a, int b, double (*pf)(double), double epsilon){ //Масло маслянное. Ты же уже сделал typedef
     int N = 20;
     double x;
     double l;
