@@ -31,7 +31,7 @@ int main(){
     cout << "0. Удалить из текста фрагменты в скобках; 1. Показать текст; 2.Ничего не делать:";
     cin >> choose;
     giveMemory(text, size);
-    fin.getline(text, size, '\0');
+    fin.getline(text, size, '\0');//ОЧЕНЬ мне не нравится. ты читаешь не строку, а ВЕСЬ файл в ОДНУ переменную!!!! А я проверяю на файле "Война и Мир". Не влазит!!!!!
 
     (*menu[choose])(text, size);
 
@@ -77,13 +77,13 @@ void deleteBetweenBrackets(char * text, int size){
     char * end;
     begin = strchr(text, '(');
     end = strchr(text, ')') + 1;
-    if (begin != 0 & end != 0){
+    if (begin != 0 & end != 0){// О!!!!!!! Прикольная операция & внутри if
 
         char * tmp;
         giveMemory(tmp, size);
         strncat(tmp, text, begin - text);
 
-        while(begin != 0 & end != 0){
+        while(begin != 0 & end != 0){// Опять!!!!!!! Прикольная операция & внутри if
             begin = strchr(end, '(');
             strncat(tmp, end, begin - end);
             end = strchr(end, ')') + 1;
