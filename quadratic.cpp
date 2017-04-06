@@ -12,7 +12,7 @@ class Quadratic{
         double b;
         double c;
         void calcDiscriminant(){
-            discriminant = b * b + 4 * a * c;
+            discriminant = b * b + 4 * a * c;//меня учили в школе, что не +, а минус...
             cout << "Дискриминант уравнения равен " << discriminant << "\n";
 
         }
