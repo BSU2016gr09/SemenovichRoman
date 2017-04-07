@@ -77,13 +77,12 @@ void deleteBetweenBrackets(char * text, int size){
     char * end;
     begin = strchr(text, '(');
     end = strchr(text, ')') + 1;
-    if (begin != 0 & end != 0){// О!!!!!!! Прикольная операция & внутри if
-
+    if (!begin && !end){
         char * tmp;
         giveMemory(tmp, size);
         strncat(tmp, text, begin - text);
 
-        while(begin != 0 & end != 0){// Опять!!!!!!! Прикольная операция & внутри if
+        while(!begin && !end){
             begin = strchr(end, '(');
             strncat(tmp, end, begin - end);
             end = strchr(end, ')') + 1;
