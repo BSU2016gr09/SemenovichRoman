@@ -1,6 +1,6 @@
 //Доделать свои проекты с дополнительной реализацией конструкторов, деструкторов и операций =, +,-
 
-//Квадратичные уравнения
+//Квадратные уравнения
 
 #include <QCoreApplication>
 #include <iostream>
@@ -63,12 +63,10 @@ class Quadratic{
         double getThirdCoefficient(){
             return this->c;
         }
-        void calcDiscriminant(){
+        void calcRoots(){
+            double discriminant;
             discriminant = b * b - 4 * a * c;
             cout << "Дискриминант уравнения равен " << discriminant << "\n";
-
-        }
-        void calcRoots(){
             if (discriminant < 0){
                 cout << "Уравнение не имеет корней :( \n";
                 return;
@@ -86,7 +84,6 @@ class Quadratic{
         double b;
         double c;
         double x1, x2;
-        double discriminant;
 };
 
 void giveMemory(Quadratic *&);
@@ -107,24 +104,20 @@ int main(){
 
     cout << "______________________________\nПервое уравнение:\n";
     first.printQuadratic();
-    first.calcDiscriminant();
     first.calcRoots();
 
     cout << "______________________________\nВторое уравнение:\n";
     second.setSecondCoefficient(-8);
     second.printQuadratic();
-    second.calcDiscriminant();
     second.calcRoots();
 
     cout << "______________________________\nТретье уравнение (сумма 1-го и 4-го):\n";
     third = (first + *fourth);
     third.printQuadratic();
-    third.calcDiscriminant();
     third.calcRoots();
 
     cout << "______________________________\nЧетвертое уравнение:\n";
     fourth->printQuadratic();
-    fourth->calcDiscriminant();
     fourth->calcRoots();
 
     cout << "______________________________\nПятое уравнение (1-е):\n";
@@ -133,13 +126,11 @@ int main(){
     cout << "Первый коэффициент: " << fifth->getFirstCoefficient() << "\n";
     cout << "Второй коэффициент: " << fifth->getSecondCoefficient() << "\n";
     cout << "Третий коэффициент: " << fifth->getThirdCoefficient() << "\n";
-    fifth->calcDiscriminant();
     fifth->calcRoots();
 
     cout << "______________________________\nШестое уравнение (разность 3-го и два раза 5-го):\n";
     *sixth = third - *fifth - *fifth;
     sixth->printQuadratic();
-    sixth->calcDiscriminant();
     sixth->calcRoots();
     cout << "______________________________\n";
 
