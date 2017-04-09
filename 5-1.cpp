@@ -10,7 +10,7 @@ using namespace std;
 
 class Quadratic{
     public:
-        Quadratic(){
+        Quadratic(){// прочитай в интернете, почему правильнее использовать списки инициализации. Т.е. делать так:  Quadratic():a(1), b(1), c(1){}
             a = 1;
             b = 1;
             c = 1;
@@ -25,14 +25,14 @@ class Quadratic{
         ~Quadratic(){
             cout << "Работает деструктор по умолчанию\n";
         }
-        friend Quadratic& operator+(Quadratic &left, Quadratic &right){
+        friend Quadratic& operator+(Quadratic &left, Quadratic &right){//Прочитай в интернете почему выгоднее friend функция по сравнению с членом класса
             Quadratic * tmp;
             tmp->a = left.a + right.a;
             tmp->b = left.b + right.b;
             tmp->c = left.c + right.c;
             return *tmp;
         }
-        friend Quadratic& operator-(Quadratic &left, Quadratic &right){
+        friend Quadratic& operator-(Quadratic &left, Quadratic &right){//Прочитай в интернете почему выгоднее friend функция по сравнению с членом класса
             Quadratic * tmp;
             tmp->a = left.a - right.a;
             tmp->b = left.b - right.b;
@@ -86,8 +86,8 @@ class Quadratic{
         double x1, x2;
 };
 
-void giveMemory(Quadratic *&);
-void deleteMemory(Quadratic *&);
+void giveMemory(Quadratic *&);//глупая функция... Она всего то делает 1 строку и то без проверок ))))
+void deleteMemory(Quadratic *&);//глупая функция...
 
 int main(){
     Quadratic first (1, 2 ,3);
