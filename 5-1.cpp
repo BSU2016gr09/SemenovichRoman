@@ -10,10 +10,7 @@ using namespace std;
 
 class Quadratic{
     public:
-        Quadratic(){// прочитай в интернете, почему правильнее использовать списки инициализации. Т.е. делать так:  Quadratic():a(1), b(1), c(1){}
-            a = 1;
-            b = 1;
-            c = 1;
+        Quadratic():  a(1), b(1), c(1){ //прочел, почему лучше использовать
             cout << "Работает конструктор по умолчанию\n";
         }
         Quadratic(double a, double b, double c){
@@ -25,20 +22,10 @@ class Quadratic{
         ~Quadratic(){
             cout << "Работает деструктор по умолчанию\n";
         }
-        friend Quadratic& operator+(Quadratic &left, Quadratic &right){//Прочитай в интернете почему выгоднее friend функция по сравнению с членом класса
-            Quadratic * tmp;
-            tmp->a = left.a + right.a;
-            tmp->b = left.b + right.b;
-            tmp->c = left.c + right.c;
-            return *tmp;
-        }
-        friend Quadratic& operator-(Quadratic &left, Quadratic &right){//Прочитай в интернете почему выгоднее friend функция по сравнению с членом класса
-            Quadratic * tmp;
-            tmp->a = left.a - right.a;
-            tmp->b = left.b - right.b;
-            tmp->c = left.c - right.c;
-            return *tmp;
-        }
+
+        friend Quadratic& operator+(Quadratic &left, Quadratic &right); //прочел, почему выгоднее
+        friend Quadratic& operator-(Quadratic &left, Quadratic &right);
+
         Quadratic& operator=(Quadratic &other){
             this->a = other.a;
             this->b = other.b;
@@ -86,8 +73,26 @@ class Quadratic{
         double x1, x2;
 };
 
-void giveMemory(Quadratic *&);//глупая функция... Она всего то делает 1 строку и то без проверок ))))
-void deleteMemory(Quadratic *&);//глупая функция...
+void giveMemory(Quadratic *&); //сделал их менее глупыми
+void deleteMemory(Quadratic *&);
+
+Quadratic& operator+(Quadratic &left, Quadratic &right){
+            Quadratic * tmp;
+            giveMemory(tmp);
+            tmp->a = left.a + right.a;
+            tmp->b = left.b + right.b;
+            tmp->c = left.c + right.c;
+            return *tmp;
+}
+
+Quadratic& operator-(Quadratic &left, Quadratic &right){
+            Quadratic * tmp;
+            giveMemory(tmp);
+            tmp->a = left.a - right.a;
+            tmp->b = left.b - right.b;
+            tmp->c = left.c - right.c;
+            return *tmp;
+}
 
 int main(){
     Quadratic first (1, 2 ,3);
@@ -138,7 +143,13 @@ int main(){
 }
 
 void giveMemory(Quadratic * &object){
-    object = new Quadratic;
+    try{
+        object = new Quadratic;
+    }
+    catch(...){
+        cout << "Память не выделилась :(\n";
+        exit(0);
+    }
 }
 
 void deleteMemory(Quadratic * &object){
