@@ -13,7 +13,7 @@ class Quadratic{
         Quadratic():  a(1), b(1), c(1){ //прочел, почему лучше использовать
             cout << "Работает конструктор по умолчанию\n";
         }
-        Quadratic(double a, double b, double c){
+        Quadratic(double a, double b, double c){//ну раз прочел, то почему в этом месте нету инициализации???????
             this->a = a;
             this->b = b;
             this->c = c;
