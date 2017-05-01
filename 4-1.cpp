@@ -10,35 +10,32 @@ using namespace std;
 
 void giveMemory(char *&, int);
 void deleteMemory(char *&);
-int fileSize();
-void checkOpen();
-void deleteBetweenBrackets(char *, int);
-void showText(char *, int);
-void fff(char *, int);
+void deleteBetweenBrackets(char *, string);
+void deleteAndWrite(char*, char *);
+void fff(char *, string);
 
+ifstream file("text.txt");
 ifstream fin("text.txt", ios_base::in);
 ofstream fout("result.txt", ios_base::trunc);
 
-typedef void (*pFun)(char *, int);
+typedef void (*pFun)(char *, string);
 
 int main(){
-    checkOpen();
+    if (fin.is_open() && file.is_open()){
+        string tmp;
+        char * text;
+        int choose;
+        pFun menu[] = {deleteBetweenBrackets, fff};
 
-    char * text;
-    int size = fileSize();
-    pFun menu[] = {deleteBetweenBrackets, showText, fff};
-    int choose;
-    cout << "0. Удалить из текста фрагменты в скобках; 1. Показать текст; 2.Ничего не делать:";
-    cin >> choose;
-    giveMemory(text, size);
-    fin.getline(text, size, '\0');//ОЧЕНЬ мне не нравится. ты читаешь не строку, а ВЕСЬ файл в ОДНУ переменную!!!! А я проверяю на файле "Война и Мир". Не влазит!!!!!
+        cout << "0. Удалить из текста фрагменты в скобках; 1.Ничего не делать:\n";
+        cin >> choose;
+        (*menu[choose])(text, tmp);
 
-    (*menu[choose])(text, size);
-
-    deleteMemory(text);
-
-    fin.close();
-    fout.close();
+        file.close();
+        fin.close();
+        fout.close();
+    }
+    else cout << "Файл не может быть открыт :(\n";
 }
 
 void giveMemory(char * &text, int size){
@@ -56,47 +53,64 @@ void deleteMemory(char *& text){
     text = nullptr;
 }
 
-int fileSize(){
-    int size;
-    FILE * pFile = fopen("text.txt", "rb");
-    fseek(pFile, 0, SEEK_END);
-    size = ftell(pFile);
-    fclose(pFile);
-    return size;
-}
-
-void checkOpen(){
-    if (!fin.is_open()){
-           cout << "Файл text.txt не может быть открыт!\n";
-           exit(0);
+void deleteBetweenBrackets(char * text, string tmp){
+    int size = 0;
+    char * result;
+    while(getline(file, tmp)){
+        size = tmp.length() + 1;
+        giveMemory(text, size);
+        fin.getline(text, size);
+        giveMemory(result, size);
+        deleteAndWrite(text, result);
+        deleteMemory(text);
+        deleteMemory(result);
     }
 }
 
-void deleteBetweenBrackets(char * text, int size){
-    char * begin;
-    char * end;
-    begin = strchr(text, '(');
-    end = strchr(text, ')') + 1;
-    if (!begin && !end){
-        char * tmp;
-        giveMemory(tmp, size);
-        strncat(tmp, text, begin - text);
-
-        while(!begin && !end){
-            begin = strchr(end, '(');
-            strncat(tmp, end, begin - end);
-            end = strchr(end, ')') + 1;
+void deleteAndWrite(char * text, char * result){
+    char * old = text;
+    char * opnBracket = strchr(text, '(');
+    char * clsBracket = strchr(text, ')');
+    static int count = 0;
+    static int flag = 0;
+    if(!opnBracket && !clsBracket && !count){
+        strcat(result, old);
+        fout << result << '\n';
+        return;
+    }
+    while(opnBracket || clsBracket){
+        if (opnBracket && !count && !flag){
+            strncat(result, old, opnBracket - old);
+            flag = 1;
         }
-            fout << tmp;
-            deleteMemory(tmp);
+        if (clsBracket && !count) old = clsBracket + 1;
+        if (!count && clsBracket)
+            if(!strchr(old + 1, ')')) strcat(result, old);
+        if (!opnBracket && clsBracket && count) {
+            count--;
+            if(!count){
+                old = clsBracket + 1;
+                strcat(result, old);
+            }
+        }
+        if (opnBracket) {
+            opnBracket = strchr(opnBracket + 1, '(');
+            count++;
+        }
+        if (clsBracket){
+            clsBracket = strchr(clsBracket + 1, ')');
+            count--;
+        }
+
     }
-    else fout << text;
+    flag = 0;
+    if(count){
+        fout << result;
+        return;
+    }
+    fout << result << '\n';
 }
 
-void showText(char * text, int size){
-    cout << text << "\n";
-}
-
-void fff(char * text, int size){
+void fff(char * text, string tmp){
     return;
 }
