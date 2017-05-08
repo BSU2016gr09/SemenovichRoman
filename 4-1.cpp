@@ -72,38 +72,35 @@ void deleteAndWrite(char * text, char * result){
     char * opnBracket = strchr(text, '(');
     char * clsBracket = strchr(text, ')');
     static int count = 0;
-    static int flag = 0;
+    static int oldRow = 0;
+    if(opnBracket && !oldRow) count++;
+    if(clsBracket && !oldRow) count--;
     if(!opnBracket && !clsBracket && !count){
-        strcat(result, old);
-        fout << result << '\n';
+        fout << text << '\n';
         return;
     }
     while(opnBracket || clsBracket){
-        if (opnBracket && !count && !flag){
+        if(opnBracket && !oldRow && !count){
             strncat(result, old, opnBracket - old);
-            flag = 1;
+            oldRow = 1;
         }
-        if (clsBracket && !count) old = clsBracket + 1;
-        if (!count && clsBracket)
-            if(!strchr(old + 1, ')')) strcat(result, old);
-        if (!opnBracket && clsBracket && count) {
-            count--;
-            if(!count){
-                old = clsBracket + 1;
-                strcat(result, old);
-            }
-        }
-        if (opnBracket) {
-            opnBracket = strchr(opnBracket + 1, '(');
-            count++;
-        }
-        if (clsBracket){
+        if(clsBracket && count){
             clsBracket = strchr(clsBracket + 1, ')');
-            count--;
+            if(clsBracket) count--;
         }
-
+        if(opnBracket > old && count == 1) strncat(result, old, opnBracket - old);
+        if(clsBracket && !count){
+            old = clsBracket + 1;
+            clsBracket = strchr(old, ')');
+            if(clsBracket) count--;
+        }
+        if(opnBracket){
+            opnBracket = strchr(opnBracket + 1, '(');
+            if(opnBracket) count++;
+        }
+        if(!opnBracket && !count) strcat(result, old);
     }
-    flag = 0;
+    oldRow = 0;
     if(count){
         fout << result;
         return;
