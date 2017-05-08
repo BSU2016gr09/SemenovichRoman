@@ -81,14 +81,13 @@ void deleteAndWrite(char * text, char * result){
     }
     while(opnBracket || clsBracket){
         if(opnBracket && !oldRow && !count){
-            strncat(result, old, opnBracket - old);
             oldRow = 1;
         }
         if(clsBracket && count){
             clsBracket = strchr(clsBracket + 1, ')');
             if(clsBracket) count--;
         }
-        if(opnBracket > old && count == 1) strncat(result, old, opnBracket - old);
+        if(opnBracket > old && (count == 1 || !count) && oldRow) strncat(result, old, opnBracket - old);
         if(clsBracket && !count){
             old = clsBracket + 1;
             clsBracket = strchr(old, ')');
