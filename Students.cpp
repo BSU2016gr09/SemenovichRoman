@@ -243,7 +243,7 @@ void results(vector <Student> &students){
 }
 
 void perfect(vector<Student> &students){
-    cout << "______________\nОтлично:\n";
+    cout << "______________\nОтлично:\n\n";
     int * marks;
     int min;
     for (unsigned int i = 0; i < students.size(); i++){
@@ -257,7 +257,7 @@ void perfect(vector<Student> &students){
 }
 
 void good(vector<Student> &students){
-    cout << "______________\nХорошо:\n";
+    cout << "______________\nХорошо:\n\n";
     int * marks;
     int min;
     for (unsigned int i = 0; i < students.size(); i++){
@@ -271,7 +271,7 @@ void good(vector<Student> &students){
 }
 
 void normal(vector<Student> &students){
-    cout << "______________\nУдовлетворительно:\n";
+    cout << "______________\nУдовлетворительно:\n\n";
     int * marks;
     int min;
     for (unsigned int i = 0; i < students.size(); i++){
