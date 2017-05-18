@@ -18,7 +18,6 @@ public:
         giveMemory(patronymic, 0);
         for(int i = 0; i < MARKS_SIZE; i++) marks[i] = 0;
     }
-
     Student(char * surname, char * name, char * patronymic, int course, int group, int marks[]): average(0){
         cout << "Работает конструктор с параметрами\n";
 
@@ -54,7 +53,7 @@ public:
         this->setString(this->patronymic, other.patronymic);
         this->setCourse(other.course);
         this->setGroup(other.group);
-        //this->setMarks(other.marks);
+        this->setMarks((int *)other.marks);
         this->average = other.average;
         return *this;
     }
@@ -107,8 +106,8 @@ public:
     int getStipend(){
         return stipend;
     }
-    friend ostream& operator << (ostream& cout, const Student &student);
-    friend istream& operator >> (istream& cin, Student &student);
+    friend ostream& operator << (ostream&, const Student&);
+    friend istream& operator >> (istream&, Student&);
 
 private:
     char * surname;
@@ -163,7 +162,7 @@ int main(){
     Student a("First", "First", "First", 4, 4);
     Student b("Second", "Second", "Second", 4, 3, marks1);
     Student c;
-    //cin >> c;
+    cin >> c;
     int marks2[] = {7,10,9,8,8};
     Student d("Third", "Third", "Third", 2, 4, marks2);
     int marks3[] = {9, 10, 10, 9, 9};
@@ -178,13 +177,13 @@ int main(){
     int choose;
     pFun menu[] = {printList, sortByAverage, sortByCoursesAndStipend, results, badResultsByCourses};
     while (1){
-        cout << "0. Показать список; 1.Сортировать по ср.баллу; 2.Сортировать по курсу и стипендии; 3.Результаты сессии; 4.Неудовлетворительные оценки по курсам;";
+        cout << "0. Показать список; 1.Сортировать по ср.баллу; 2.Сортировать по курсу и стипендии; 3.Результаты сессии; 4.Неудовлетворительные оценки по курсам;\n";
         cin >> choose;
         (*menu[choose])(students);
     }
 }
 
-ostream& operator << (ostream& cout, const Student &student){
+ostream& operator << (ostream &cout, const Student &student){
     cout << "Фамилия: " << student.surname << "\n";
     cout << "Имя: " << student.name << "\n";
     cout << "Отчество: " << student.patronymic << "\n";
@@ -197,7 +196,7 @@ ostream& operator << (ostream& cout, const Student &student){
     return cout;
 }
 
-istream& operator >> (istream& cin, Student &student){
+istream& operator >> (istream &cin, Student &student){
     cout << "Введите фамилию: ";
     char * tmp = new char[20];
     cin >> tmp;
@@ -229,7 +228,7 @@ istream& operator >> (istream& cin, Student &student){
     return cin;
 }
 
-void results(vector <Student>& students){
+void results(vector <Student> &students){
     typedef void (*pF)(vector<Student>&);
     void perfect(vector<Student>&);
     void good(vector<Student>&);
@@ -243,7 +242,7 @@ void results(vector <Student>& students){
     (*submenu[choose])(students);
 }
 
-void perfect(vector<Student>& students){
+void perfect(vector<Student> &students){
     cout << "______________\nОтлично:\n";
     int * marks;
     int min;
@@ -257,7 +256,7 @@ void perfect(vector<Student>& students){
     }
 }
 
-void good(vector<Student>& students){
+void good(vector<Student> &students){
     cout << "______________\nХорошо:\n";
     int * marks;
     int min;
@@ -271,7 +270,7 @@ void good(vector<Student>& students){
     }
 }
 
-void normal(vector<Student>& students){
+void normal(vector<Student> &students){
     cout << "______________\nУдовлетворительно:\n";
     int * marks;
     int min;
@@ -285,7 +284,7 @@ void normal(vector<Student>& students){
     }
 }
 
-void bad(vector<Student>& students){
+void bad(vector<Student> &students){
     cout << "______________\nНеудовлетворительно:\n\n";
     int * marks;
     int min;
@@ -300,7 +299,7 @@ void bad(vector<Student>& students){
 }
 
 
-void badResultsByCourses(vector<Student>& students){
+void badResultsByCourses(vector<Student> &students){
     cout << "______________\nКоличество неудовлетворительных оценок:\n\n";
     int * marks;
     int result[COURSES][GROUPS + 1];
@@ -324,11 +323,11 @@ void badResultsByCourses(vector<Student>& students){
     }
 }
 
-void printList(vector <Student>& students){
+void printList(vector<Student> &students){
     for(unsigned int i = 0; i < students.size(); i++) cout << students[i];
 }
 
-void sortByAverage(vector<Student> & students){
+void sortByAverage(vector<Student> &students){
     for(unsigned int i = 0; i < students.size() - 1; i++){
         for(unsigned int j = 0; j < students.size() - i - 1; j++){
             if (students[j].getAverage() > students[j + 1].getAverage()) swap(students[j], students[j + 1]);
@@ -336,11 +335,11 @@ void sortByAverage(vector<Student> & students){
     }
 }
 
-void sortByCoursesAndStipend(vector<Student> & students){
+void sortByCoursesAndStipend(vector<Student> &students){
     for(unsigned int i = 0; i < students.size() - 1; i++){
         for(unsigned int j = 0; j < students.size() - i - 1; j++){
             if (students[j].getCourse() > students[j + 1].getCourse()) swap(students[j], students[j + 1]);
-            else if (students[j].getGroup() == students[j + 1].getGroup() && students[j].getStipend() > students[j + 1].getStipend())
+            if (students[j].getGroup() == students[j + 1].getGroup() && students[j].getStipend() > students[j + 1].getStipend())
                 swap(students[j], students[j + 1]);
         }
     }
