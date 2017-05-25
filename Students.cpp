@@ -345,7 +345,7 @@ void showHighAchievers(vector<Student> &students){
         for (unsigned int j = 0; j < courses[i].size(); j++) cout << courses[i][j];
 }
 
-void sortByAlphabet(vector <Student> courses[]){
+void sortByAlphabet(vector <Student> courses[]){ //у меня эта функция в VS2012 не компилируется!!!!
     for (unsigned int i = 0; i < COURSES_NUMBER; i++)
         for (unsigned int j = 0; j < courses[i].size() - 1; j++){
             if (!courses[i].size()) break;
